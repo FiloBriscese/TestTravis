@@ -3,16 +3,16 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="HelloWorld">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="TestTravis.git">
     <property environment="env"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="14"/>
     <property name="source" value="14"/>
-    <path id="HelloWorld.classpath">
+    <path id="TestTravis.git.classpath">
         <pathelement location="bin"/>
     </path>
-    <path id="run.HelloWorld.classpath">
-        <path refid="HelloWorld.classpath"/>
+    <path id="run.HelloWorld (1).classpath">
+        <path refid="TestTravis.git.classpath"/>
     </path>
     <target name="init">
         <mkdir dir="bin"/>
@@ -31,9 +31,9 @@
     <target name="build-subprojects"/>
     <target depends="init" name="build-project">
         <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}" verbose="true">
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="HelloWorld.classpath"/>
+            <classpath refid="TestTravis.git.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -50,9 +50,9 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="HelloWorld">
+    <target name="HelloWorld (1)">
         <java classname="HelloWorld" failonerror="true" fork="yes">
-            <classpath refid="run.HelloWorld.classpath"/>
+            <classpath refid="run.HelloWorld (1).classpath"/>
         </java>
     </target>
 </project>
